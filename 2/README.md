@@ -296,20 +296,20 @@ Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio,
     Eigen::Matrix4f Persp2Ortho = Eigen::Matrix4f::Identity();
     Eigen::Matrix4f projection = Eigen::Matrix4f::Identity();
 
-    T_ortho << 1/right,     0, 				0, 0,
-                     0, 1/top, 				0, 0,
-    		         0,     0, 2/(zNear-zFar), 0,
+    T_ortho << 1/right,     0,              0, 0,
+                     0, 1/top,              0, 0,
+                     0,     0, 2/(zNear-zFar), 0,
                      0,     0,              0, 1;
 
-    S_ortho << 1, 0, 0, 			  0,
-    		   0, 1, 0, 			  0,
-    		   0, 0, 1, -(zNear+zFar)/2,
-    		   0, 0, 0, 			  1;
+    S_ortho << 1, 0, 0,               0,
+               0, 1, 0,               0,
+               0, 0, 1, -(zNear+zFar)/2,
+               0, 0, 0,               1;
 
-    Persp2Ortho <<  zNear,     0,          0,           0,
-    				    0, zNear,          0,           0,
-    				    0,     0, zNear+zFar, -zNear*zFar,
-    					0,     0,          1,           0;
+    Persp2Ortho << zNear,      0,         0,           0,
+                       0, zNear,          0,           0,
+                       0,     0, zNear+zFar, -zNear*zFar,
+                       0,     0,          1,           0;
 	
     projection = S_ortho * T_ortho * Persp2Ortho;
     return projection;
