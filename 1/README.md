@@ -96,7 +96,9 @@ sin\alpha&cos\alpha&0\\
 \end{matrix}
 \right)\cdot{\left(
 \begin{matrix}
-x\\y\\1
+x\\
+y\\
+1
 \end{matrix}
 \right)=\left(
 \begin{matrix}
