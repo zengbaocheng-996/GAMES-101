@@ -4,7 +4,9 @@ $$
 T(t_x,t_y)\cdot{
 \left(
 \begin{matrix}
-x\\y\\1
+x\\
+y\\
+1
 \end{matrix}
 \right)
 }=
