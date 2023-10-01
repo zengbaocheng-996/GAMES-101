@@ -214,6 +214,7 @@ $$
 # 模型视图变换
 
 简单来说就是把相机和模型按约定放在坐标系上
+
 $$
 M_{view}=R_{view}T_{view}
 $$
@@ -250,6 +251,7 @@ $$
 ###### 透视投影 Perspective projection
 
 简单来说就是把远平面上的点映射到近平面上
+
 $$
 M_{persp}=M_{ortho}M_{persp\rightarrow{ortho}}=M_{ortho}\left(
 \begin{matrix}
