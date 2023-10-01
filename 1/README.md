@@ -64,7 +64,7 @@ y\\
 \right)=\left(
 \begin{matrix}
 s_xx\\
-s_yt_y\\
+s_yy\\
 1
 \end{matrix}
 \right)=\left(
