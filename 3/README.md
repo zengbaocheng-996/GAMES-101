@@ -43,10 +43,10 @@ Three Cross Products
 ```c++
 for(each triangle T)
     for(each sample(x,y,z) in T)
-        if(z < zbuffer[x,y])		// closest sample so far
+        if(z < zbuffer[x,y])        // closest sample so far
             framebuffer[x,y] = rgb; // update color
-			zbuffer[x,y] = z;		// update depth
-		else
+            zbuffer[x,y] = z;       // update depth
+        else
             ; // do nothing, this sample is occluded
 ```
 
