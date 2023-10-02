@@ -21,6 +21,7 @@ L_d=k_d(I/r^2)max(0,n\cdot{l})
 $$
 
 Lambert's cosine law
+
 $$
 cos\theta=l\cdot{n}
 $$
@@ -39,6 +40,7 @@ L_s&=k_s(I/r^2)max(0,cos\alpha)^p\\
 $$
 
 half vector
+
 $$
 h=bisector(v,l)=\frac{v+l}{||v+l||}
 $$
@@ -120,13 +122,16 @@ for each rasterized screen sample (x,y): // Usually a pixel's center
 ###### Bump Mapping 凹凸贴图
 
 1D
+
 $$
 \begin{align}
 dp&=c[h(p+1)-h(p)]\\
 n(p)&=(-dp,1).normalized()
 \end{align}
 $$
+
 3D
+
 $$
 \begin{align}
 dp/du&=c1[h(u+1)-h(u)]\\
