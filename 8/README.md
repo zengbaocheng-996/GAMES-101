@@ -174,19 +174,15 @@ L_o(p,w_o)&=\frac{1}{N}\sum_{i=1}^{N}\frac{L_i(p,w_i)f_r(p,w_i,w_o)(n\cdot{w_i})
 \end{align}
 $$
 
-###### Path Tracing
+###### Russian Roulette
 
-```c++
-shade(p, wo)
-    Randomly choose ONE directions wi~pdf
-    Trace a ray r(p, wi)
-    If ray r hit the light
-        Return L_i * f_r * cosine / pdf(wi)
-    Else If ray r hit an object at q
-        Return shade(q, -wi) * f_r * cosine / pdf(wi)
-```
+$$
+E=P*(L_o/P)+(1-P)*0=L_o
+$$
 
-###### Ray Generation
+###### Ray Generation 
+
+N (ssp samples per pixel)
 
 ```c++
 ray_generation(camPos, pixel)
@@ -197,6 +193,48 @@ ray_generation(camPos, pixel)
     	If ray r hit the scene at p
     		pixel_radiuance += 1 / N * shade(p, sample_to_cam)
     Return pixel_radiance
+```
+
+###### Sampling the Light
+
+$$
+\begin{align}
+\int{\text{pdf}}\ \text{d}A&=1\\
+\text{pdf}&=1/A
+\end{align}
+$$
+
+$$
+\begin{align}
+L_o&=\int{L_i}f_rcos\text{d}w\\
+\text{d}w&=\frac{\text{d}Acos\theta'}{||x'-x||^2}
+\end{align}
+$$
+
+$$
+\begin{align}
+L_o(p,w_o)&=\int_{\Omega^+}L_i(x,w_i)f_r(x,w_i,w_o)cos\theta\text{d}w_i\\
+&=\int_{A}L_i(x,w_i)f_r(x,w_i,w_o)\frac{cos\theta{cos\theta'}}{||x'-x||^2}\text{d}A
+\end{align}
+$$
+
+###### Path Tracing
+
+```c++
+shade(p, wo)
+    # Contribution from the light source.
+    Uniformly sample the light at x' (pdf_light = 1 / A)
+    L_dir = L_i * f_r * cosθ * cosθ' / |x' - p|^2 / pdf_light
+    
+    # Contribution from other reflectors.
+    L_indir = 0.0
+    Test Russian Roulette with probability P_RR
+    Uniformly sample the hemisphere toward wi (pdf_hemi = 1 / 2pi)
+    Trace a ray r(p, wi)
+    If ray r hit a non-emitting object at q
+    	L_indir = shade(q, -wi) * f_r * cosθ / pdf_hemi / P_RR
+   	
+    Return L_dir + L_indir
 ```
 
 # 作业 7
@@ -285,6 +323,40 @@ Intersection BVHAccel::getIntersection(BVHBuildNode* node, const Ray& ray) const
 ###### Scene.cpp
 
 ```c++
+Vector3f Scene::castRay(const Ray &ray, int depth) const
+{
+    Intersection intersection = Scene::intersect(ray);
+    if(intersection.happened) {
 
+        Vector3f hitPoint = intersection.coords;
+        Vector3f N = intersection.normal;
+        Material *m = intersection.m;
+  
+        Vector3f L_dir(0.0), L_indir(0.0);
+
+        Intersection intersection_light;
+        float pdf_light;
+        sampleLight(intersection_light, pdf_light);
+        Vector3f dir_p_x = (intersection_light.coords - hitPoint).normalized();
+        Ray ray_p_x(hitPoint + EPSILON * N, dir_p_x);
+        Intersection intersection_p_x = Scene::intersect(ray_p_x);
+        if(intersection_p_x.happened && intersection_p_x.m->hasEmission()) {
+            Vector3f NN = intersection_p_x.normal;
+            L_dir = intersection_p_x.m->m_emission * m->eval(ray.direction, dir_p_x, N) * dotProduct(dir_p_x, N) * dotProduct(-dir_p_x, NN) / intersection_p_x.distance / pdf_light;
+        }
+
+        if(get_random_float() <= RussianRoulette) {
+            Vector3f dir_i = m->sample(ray.direction, N).normalized();
+            Ray ray_p_diri(hitPoint, dir_i);
+            Intersection intersection_p_diri = Scene::intersect(ray_p_diri);
+            if(intersection_p_diri.happened && !intersection_p_diri.m->hasEmission()) {
+                L_indir = castRay(ray_p_diri, depth+1) * m->eval(ray.direction, dir_i, N) * dotProduct(dir_i, N) / m->pdf(ray.direction, dir_i, N) / RussianRoulette;
+            }
+        }
+
+        return m->getEmission() + L_dir + L_indir;
+    } 
+    else 
+        return Vector3f(0,0,0);
+}
 ```
-
