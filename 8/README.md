@@ -92,8 +92,6 @@ $$
 [\frac{\text{W}}{\text{srm}^2}][\frac{\text{cd}}{\text{m}^2}=\frac{\text{lm}}{\text{srm}^2}=\text{nit}]
 $$
 
-
-
 # 双向反射分布函数
 
 BRDF represents how much ligh is reflected into each outgoing direction w_r from each incoming direction
@@ -122,6 +120,10 @@ $$
 
 # Monte Carlo 积分
 
+$$
+\int{f(x)}dx=\frac{1}{N}\sum^N_{i=1}\frac{f(X_i)}{p(X_i)}\ \ \ \ X_i\sim{p(x)}
+$$
+
 ###### Definite integral
 
 $$
@@ -140,9 +142,62 @@ $$
 F_N=\frac{1}{N}\sum^N_{i=1}\frac{f(X_i)}{p(X_i)}
 $$
 
-# 路径追踪
+# 光线追踪 (路径追踪)
 
+###### Whitted Style Ray Tracing Problem
 
+1. Glossy reflection != Mirror reflection
+2. No reflections between diffuse materials
+
+###### A Simple Monte Carlo Solution
+
+$$
+L_o(p,w_o)=L_e(p,w_o)+\int_{\Omega^+}L_i(p,w_i)f_r(p,w_i,w_o)(n\cdot{w_i})\text{d}w_i
+$$
+
+assume all directions are pointing outwards
+$$
+L_o(p,w_o)=\int_{\Omega^+}L_i(p,w_i)f_r(p,w_i,w_o)(n\cdot{w_i})\text{d}w_i
+$$
+
+$$
+\begin{align}
+f(x)&=L_i(p,w_i)f_r(p,w_i,w_o)(n\cdot{w_i})\\
+p(w_i)&=1/2\pi
+\end{align}
+$$
+
+$$
+\begin{align}
+\int{f(x)}dx&=\frac{1}{N}\sum^N_{i=1}\frac{f(X_i)}{p(X_i)}\ \ \ \ X_i\sim{p(x)}\\
+L_o(p,w_o)&=\frac{1}{N}\sum_{i=1}^{N}\frac{L_i(p,w_i)f_r(p,w_i,w_o)(n\cdot{w_i})}{p(w_i)}
+\end{align}
+$$
+
+###### Path Tracing
+
+```c++
+shade(p, wo)
+    Randomly choose ONE directions wi~pdf
+    Trace a ray r(p, wi)
+    If ray r hit the light
+        Return L_i * f_r * cosine / pdf(wi)
+    Else If ray r hit an object at q
+        Return shade(q, -wi) * f_r * cosine / pdf(wi)
+```
+
+###### Ray Generation
+
+```c++
+ray_generation(camPos, pixel)
+    Uniformly choose N sample positions within the pixel
+    pixel_radiance = 0.0
+    For each sample in the pixel
+    	Shoot a ray r(camPos, cam_to_sample)
+    	If ray r hit the scene at p
+    		pixel_radiuance += 1 / N * shade(p, sample_to_cam)
+    Return pixel_radiance
+```
 
 # 作业 7
 
