@@ -35,6 +35,7 @@ $$
 ###### Moller Trumbore Algorithm
 
 A faster approach, giving barycentric coordinate directly
+
 $$
 \overrightarrow{O}+t\overrightarrow{D}=(1-b_1-b_2)\overrightarrow{P_0}+b_1\overrightarrow{P_1}+b_2\overrightarrow{P_2}
 $$
