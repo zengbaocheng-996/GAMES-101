@@ -120,6 +120,14 @@ L&=E+KE+K^2E+K^3E+\cdots
 \end{align}
 $$
 
+# Monte Carlo 积分
+
+
+
+# 路径追踪
+
+
+
 # 作业 7
 
 ###### Triangle.hpp
