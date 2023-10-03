@@ -32,7 +32,7 @@ $$
 r(t)=o+td,\ t>0
 $$
 
-###### Moller Trumbore Algorithm
+###### Möller Trumbore Algorithm
 
 A faster approach, giving barycentric coordinate directly
 

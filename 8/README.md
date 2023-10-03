@@ -122,7 +122,23 @@ $$
 
 # Monte Carlo 积分
 
+###### Definite integral
 
+$$
+\int_a^bf(x)dx
+$$
+
+###### Random variable
+
+$$
+X_i\sim{p(x)}
+$$
+
+###### Monte Carlo estimator
+
+$$
+F_N=\frac{1}{N}\sum^N_{i=1}\frac{f(X_i)}{p(X_i)}
+$$
 
 # 路径追踪
 
