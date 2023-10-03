@@ -1,3 +1,69 @@
+# 辐射度量学
+
+###### Radiant Energy
+
+$$
+Q\text{[J=Joule]}
+$$
+
+###### Radiant Flux (Power)
+
+#photons flowing through a sensor in unit time
+$$
+\Phi\equiv\frac{\text{d}Q}{\text{d}t}\text{[{W=Watt}][lm=lumen]}^*
+$$
+
+###### Radiant Intensity
+
+light emitted from a source
+$$
+I(w)\equiv\frac{\text{d}\Phi}{\text{d}w}
+$$
+
+$$
+[\frac{\text{W}}{\text{sr}}][\frac{\text{lm}}{\text{sr}}=\text{cd=candela}]
+$$
+
+Angle
+$$
+\theta=\frac{l}{r}
+$$
+Solid angle
+$$
+\Omega=\frac{A}{r^2}
+$$
+Differential Solid Angle
+$$
+\begin{align}
+\text{d}A&=(r\text{d}\theta)(rsin\theta{\text{d}\phi})\\
+&=r^2sin\theta{\text{d}\theta}\text{d}\phi
+\end{align}
+$$
+
+$$
+\text{d}w=\frac{\text{d}A}{r^2}=sin\theta\text{d}\theta\text{d}\phi
+$$
+
+Isotropic Point Source
+$$
+\begin{align}
+\Phi&=\int_{S^2}I\text{d}w\\
+&=4\pi{I}
+\end{align}
+$$
+
+$$
+I=\frac{\Phi}{4\pi}
+$$
+
+###### Irradiance
+
+light falling on a surface
+
+###### Radiance
+
+light traveling along a ray
+
 # 作业 7
 
 ###### Triangle.hpp
@@ -82,4 +148,8 @@ Intersection BVHAccel::getIntersection(BVHBuildNode* node, const Ray& ray) const
 ```
 
 ###### Scene.cpp
+
+```c++
+
+```
 
