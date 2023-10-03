@@ -10,4 +10,6 @@
 |  5   | 贝塞尔曲线                                                   | Bézier Curves                                                | 作业 4 |
 |  6   | 光线追踪<br />Moller Trumbore 算法                           | Ray Tracing<br />Moller Trumbore Algorithm                   | 作业 5 |
 |  7   | 包围盒                                                       | Bounding Volumes                                             | 作业 6 |
+|  8   |                                                              |                                                              | 作业 7 |
+|  9   |                                                              |                                                              | 作业 8 |
 
