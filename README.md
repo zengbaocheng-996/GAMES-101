@@ -9,4 +9,5 @@
 |  4   | Blinn-Phong 反射模型<br />着色频率<br />图形管线<br />重心坐标<br />纹理映射 | Blinn-Phong Reflectance Model<br />Shading Frequencies<br />Graphics (Real-time Rendering) Pipeline<br />Barycentric Coordinates<br />Texture Mapping | 作业 3 |
 |  5   | 贝塞尔曲线                                                   | Bézier Curves                                                | 作业 4 |
 |  6   | 光线追踪<br />Moller Trumbore 算法                           | Ray Tracing<br />Moller Trumbore Algorithm                   | 作业 5 |
+|  7   | 包围盒                                                       | Bounding Volumes                                             | 作业 6 |
 
