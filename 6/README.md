@@ -22,7 +22,7 @@
 
 1. Reflected ray (specular reflection)
 2. Refracted rays (specular transmission)
-3. Primary ray)
+3. Primary rays
 4. Secondary rays
 5. Shadow rays
 
