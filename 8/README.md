@@ -1,5 +1,9 @@
 # 辐射度量学
 
+###### Intensity
+
+power per solid angle
+
 ###### Radiant Energy
 
 $$
@@ -13,9 +17,6 @@ $$
 \Phi\equiv\frac{\text{d}Q}{\text{d}t}\text{[{W=Watt}][lm=lumen]}^*
 $$
 
-###### Radiant Intensity
-
-light emitted from a source
 $$
 I(w)\equiv\frac{\text{d}\Phi}{\text{d}w}
 $$
@@ -24,15 +25,20 @@ $$
 [\frac{\text{W}}{\text{sr}}][\frac{\text{lm}}{\text{sr}}=\text{cd=candela}]
 $$
 
-Angle
+###### Angle
+
 $$
 \theta=\frac{l}{r}
 $$
-Solid angle
+
+###### Solid angle
+
 $$
 \Omega=\frac{A}{r^2}
 $$
-Differential Solid Angle
+
+###### Differential Solid Angle
+
 $$
 \begin{align}
 \text{d}A&=(r\text{d}\theta)(rsin\theta{\text{d}\phi})\\
@@ -44,7 +50,8 @@ $$
 \text{d}w=\frac{\text{d}A}{r^2}=sin\theta\text{d}\theta\text{d}\phi
 $$
 
-Isotropic Point Source
+###### Isotropic Point Source
+
 $$
 \begin{align}
 \Phi&=\int_{S^2}I\text{d}w\\
@@ -56,13 +63,62 @@ $$
 I=\frac{\Phi}{4\pi}
 $$
 
-###### Irradiance
+###### Irradiance 
 
-light falling on a surface
+power per projected unit area
+$$
+E(x)\equiv\frac{\text{d}\Phi(x)}{\text{d}A}
+$$
+
+$$
+[\frac{\text{W}}{\text{m}^2}][\frac{\text{lm}}{\text{m}^2}=\text{lux}]
+$$
+
+###### Radiant Intensity
+
+light emitted from a source
 
 ###### Radiance
 
-light traveling along a ray
+1. power per unit solid angle, per projected unit area
+2. Irradiance per solid angle
+3. Intensity per projected unit area
+
+$$
+L(p,w)\equiv{\frac{\text{d}^2\Phi(p,w)}{\text{d}w\text{d}Acos\theta}}
+$$
+
+$$
+[\frac{\text{W}}{\text{srm}^2}][\frac{\text{cd}}{\text{m}^2}=\frac{\text{lm}}{\text{srm}^2}=\text{nit}]
+$$
+
+
+
+# 双向反射分布函数
+
+BRDF represents how much ligh is reflected into each outgoing direction w_r from each incoming direction
+$$
+f_r(w_i\rightarrow{w_r})=\frac{\text{d}L_r(w_r)}{\text{d}E_i(w_i)}=\frac{\text{d}L_r(w_r)}{L_i(w_i)cos\theta_i\text{d}w_i}\left[\frac{1}{\text{sr}}\right]
+$$
+The Reflection Equation
+$$
+L_r(p,w_r)=\int_{H^2}f_r(p,w_i\rightarrow{w_r})L_i(p,w_i)cos\theta_i\text{d}w_i
+$$
+The Rendering Equation
+$$
+L_o(p,w_o)=L_e(p,w_o)+\int_{\Omega^+}L_i(p,w_i)f_r(p,w_i,w_o)(n\cdot{w_i})\text{d}w_i
+$$
+Linear Operator Equation
+$$
+\begin{align}
+L&=E+KL\\
+IL-KL&=E\\
+(I-K)L&=E\\
+L&=(I-K)^{-1}E\\
+L&=(I+K+K^2+K^3+\cdots)E\\
+L&=E+KE+K^2E+K^3E+\cdots
+\end{align}
+$$
 
 # 作业 7
 
