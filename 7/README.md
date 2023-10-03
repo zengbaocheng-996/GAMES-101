@@ -3,13 +3,16 @@
 ###### Ray Intersection with Axis-Aligned Box
 
 For each pair, calculate the t_min and t_max
+
 $$
 \begin{align}
 t_{enter}&=max\{t_{min}\}\\
 t_{exit}&=min\{t_{max}\}
 \end{align}
 $$
+
 Ray and AABB intersect iff
+
 $$
 \begin{align}
 t_{enter}&<t_{exit}\\
