@@ -13,6 +13,7 @@ $$
 ###### Radiant Flux (Power)
 
 #photons flowing through a sensor in unit time
+
 $$
 \Phi\equiv\frac{\text{d}Q}{\text{d}t}\text{[{W=Watt}][lm=lumen]}^*
 $$
@@ -66,6 +67,7 @@ $$
 ###### Irradiance 
 
 power per projected unit area
+
 $$
 E(x)\equiv\frac{\text{d}\Phi(x)}{\text{d}A}
 $$
@@ -95,18 +97,25 @@ $$
 # 双向反射分布函数
 
 BRDF represents how much ligh is reflected into each outgoing direction w_r from each incoming direction
+
 $$
 f_r(w_i\rightarrow{w_r})=\frac{\text{d}L_r(w_r)}{\text{d}E_i(w_i)}=\frac{\text{d}L_r(w_r)}{L_i(w_i)cos\theta_i\text{d}w_i}\left[\frac{1}{\text{sr}}\right]
 $$
+
 The Reflection Equation
+
 $$
 L_r(p,w_r)=\int_{H^2}f_r(p,w_i\rightarrow{w_r})L_i(p,w_i)cos\theta_i\text{d}w_i
 $$
+
 The Rendering Equation
+
 $$
 L_o(p,w_o)=L_e(p,w_o)+\int_{\Omega^+}L_i(p,w_i)f_r(p,w_i,w_o)(n\cdot{w_i})\text{d}w_i
 $$
+
 Linear Operator Equation
+
 $$
 \begin{align}
 L&=E+KL\\
@@ -156,6 +165,7 @@ L_o(p,w_o)=L_e(p,w_o)+\int_{\Omega^+}L_i(p,w_i)f_r(p,w_i,w_o)(n\cdot{w_i})\text{
 $$
 
 assume all directions are pointing outwards
+
 $$
 L_o(p,w_o)=\int_{\Omega^+}L_i(p,w_i)f_r(p,w_i,w_o)(n\cdot{w_i})\text{d}w_i
 $$
