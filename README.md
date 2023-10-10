@@ -11,4 +11,5 @@
 |  6   | 光线追踪 (Whitted Style)<br />Möller Trumbore 算法           | Ray Tracing (Whitted Style)<br />Möller Trumbore Algorithm   | 作业 5 |
 |  7   | 包围盒                                                       | Bounding Volumes                                             | 作业 6 |
 |  8   | 辐射度量学<br />双向反射分布函数<br />Monte Carlo 积分<br />光线追踪 (路径追踪) | Radiometry<br />Bidirectional Reflectance Distribution Function<br />Monte Carlo Integration<br />Ray Tracing (Path Tracing) | 作业 7 |
+|  9   | 质点弹簧系统                                                 | Mass Spring System                                           | 作业 8 |
 
